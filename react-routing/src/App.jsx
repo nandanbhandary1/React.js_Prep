@@ -3,19 +3,62 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./components/Home";
 import About from "./components/About";
 import Dashboard from "./components/Dashboard";
+import Navbar from "./components/Navbar";
+import Param from "./components/Param";
+import Courses from "./components/Courses";
+import Mock from "./components/Mock";
+import NotFound from "./components/NotFound";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: (
+      <div>
+        <Navbar />
+        <Home />
+      </div>
+    ),
   },
   {
     path: "/about",
-    element: <About />,
+    element: (
+      <div>
+        <Navbar />
+        <About />
+      </div>
+    ),
   },
   {
     path: "/dashboard",
-    element: <Dashboard />,
+    element: (
+      <div>
+        <Navbar />
+        <Dashboard />
+      </div>
+    ),
+    children: [
+      {
+        path: "courses",
+        element: <Courses />,
+      },
+      {
+        path: "mock-test",
+        element: <Mock />,
+      },
+    ],
   },
+  {
+    path: "/student/:id",
+    element: (
+      <div>
+        <Navbar />
+        <Param />
+      </div>
+    ),
+  },
+  {
+    path:'*',
+    element:<NotFound />
+  }
 ]);
 
 function App() {
